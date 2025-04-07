@@ -201,7 +201,7 @@ const STOPS = [
         zoom: 11
     },
 
-];
+]
 
 
 let map = L.map('map');
@@ -220,13 +220,14 @@ L.control.scale({
 
 
 //overlays definieren
+
 let overlays = {
     marker: L.featureGroup().addTo(map),
 }
 
 //Layercontorl definieren
 L.control.layers({
-    "OpenStreetMap": L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    "OpenStreetMap": L.tileLayer('OpenStreetMap/{z}/{x}/{y}.png',
         {
             maxZoom: 19,
             attribution: 'Hintergrundkarte: <a href ="OpenStreetMap.Mapnik</a>'
@@ -245,6 +246,7 @@ for (let i = 0; i < STOPS.length; i++) {
     // Marker zeichnen
     let marker = L.marker([STOPS[i].lat, STOPS[i].lng]).addTo(map);
 console.log(marker)
+marker.addTo(overlays.marker);
     // Popup definieren und öffnen 
     marker.bindPopup(`
     <h2>${STOPS[i].title}</h2>
@@ -260,7 +262,7 @@ console.log(marker)
         map.setView([STOPS[i].lat, STOPS[i].lng], STOPS[i].zoom);
         marker.openPopup()
     }
-
+//
 
 
     //Pulldownmenü befüllen
