@@ -2,6 +2,9 @@
 Skript für Neuseelandreise
 
 */
+
+
+
 let stop = {
 
     nr: 9,
@@ -203,13 +206,18 @@ const STOPS = [
 
 let map = L.map('map');
 
-
 // Hintergrundkarte definieren
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 console.log(STOPS)
+
+// Maßstab
+L.control.scale({
+    imperial: false,
+}).addTo(map); 
+
 //loop über Etappen
 for (let i = 0; i < STOPS.length; i++) {
     console.log(i)
@@ -232,6 +240,8 @@ console.log(marker)
         map.setView([STOPS[i].lat, STOPS[i].lng], STOPS[i].zoom);
         marker.openPopup()
     }
+
+
 
     //Pulldownmenü befüllen
     let option = document.createElement("option");
